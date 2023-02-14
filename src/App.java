@@ -85,6 +85,11 @@ public class App {
             builder.append("<table>");
             for(String key: wordCounter.keySet())
             {
+                final String css = "<style>"
+                            + " td, th { border: solid} "
+                            + " table, td, th { border=collapse: collapose}"
+                            + "</style>" ;
+            builder.append(css).append("\n");
                 builder.append("<tr>");
                 builder.append("<td>"+ key + "</td>");
                 builder.append("<td>"+ wordCounter.get(key) + "</td>");
