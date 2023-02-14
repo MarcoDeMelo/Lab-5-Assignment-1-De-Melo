@@ -1,0 +1,2 @@
+*.class
+// All our local classes gets stored here to make sure we don't have to pass it back and foward //
