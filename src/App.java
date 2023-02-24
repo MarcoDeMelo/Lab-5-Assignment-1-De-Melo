@@ -88,6 +88,7 @@ public class App {
                 final String css = "<style>"
                             + " td, th { border: solid} "
                             + " table, td, th { border=collapse: collapse}"
+                            + " table {border: #1E90FF}"
                             + "</style>" ;
             builder.append(css).append("\n");
                 builder.append("<tr>");
