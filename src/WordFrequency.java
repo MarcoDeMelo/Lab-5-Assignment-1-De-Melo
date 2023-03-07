@@ -2,6 +2,7 @@ public class WordFrequency implements Comparable<WordFrequency>{
     Integer wordCount;
     String word;
 
+    //Constructer 
     public WordFrequency(String word, Integer wordCount)
     {
         this.word = word;
