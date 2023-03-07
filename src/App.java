@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException; 
 import java.util.HashMap;
-import java.util.Collection;
 import java.util.Collections; 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -17,18 +16,9 @@ public class App {
 
         HashMap<String, Integer> wordFrequencies = buildHashMap(words);
 
-        ArrayList<WordFrequency> wordFrequencyList = new ArrayList<>();
-
-        for (String word : wordFrequencies.keySet()) {
-            int frequency = wordFrequencies.get(word);
-            WordFrequency wordFrequency = new WordFrequency(word, frequency);
-            wordFrequencyList.add(wordFrequency);
-        }
-
-        Collections.sort(wordFrequencyList);
-        for (WordFrequency wordFrequency : wordFrequencyList) {
-            System.out.println(wordFrequency.getWord() + " : " + wordFrequency.getWordCount());
-        }
+        
+        createHTMLFile2(wordFrequencies);
+       
     }
 
     //Step 4 Read input file
@@ -122,6 +112,57 @@ public class App {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+        private static void createHTMLFile2(HashMap<String, Integer> wordFrequencies)
+        {
+
+            ArrayList<WordFrequency> wordFrequencyList = new ArrayList<>();
+
+        for (String word : wordFrequencies.keySet()) {
+            int frequency = wordFrequencies.get(word);
+            WordFrequency wordFrequency = new WordFrequency(word, frequency);
+            wordFrequencyList.add(wordFrequency);
+        }
+        Collections.sort(wordFrequencyList);
+        
+       
+
+        HashMap<String, Integer> wordFrequencie = new HashMap<>();
+            for (WordFrequency wordFrequency : wordFrequencyList) {
+
+            wordFrequencie.put(wordFrequency.getWord(), wordFrequency.getWordCount());
+        }
+            File file2 = new File("C:/Users/16476/Desktop/Sc/Semester 4/Java/Lab 5 Assignment 1 De Melo/res/sorted.html");
+            try {
+                
+                FileWriter fileWriter = new FileWriter(file2);
+                StringBuilder builder = new StringBuilder();
+                builder.append("<h1>Word Count</h1>");
+
+        builder.append("<table>");
+        final String css = "<style>"
+                    + " td, th { border: solid} "
+                    + " table, td, th { border-collapse: collapse}"
+                    + " table {border: #1E90FF}"
+                    + "</style>" ;
+        builder.append(css).append("\n");
+        builder.append("<tr><th>Word</th><th>Count</th></tr>");
+        for (WordFrequency wordFrequency : wordFrequencyList) {
+            builder.append("<tr>");
+            builder.append("<td>"+ wordFrequency.getWord() + "</td>");
+            builder.append("<td>"+ wordFrequency.getWordCount() + "</td>");
+            builder.append("</tr>");
+        }
+        builder.append("</table>");
+
+        fileWriter.append(builder.toString());
+        fileWriter.close();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+    
 // to see it in console.
     /* 
         for (String keyWord: wordCounter.keySet())
@@ -131,6 +172,6 @@ public class App {
         */
     }
 
-}
+
 
 
