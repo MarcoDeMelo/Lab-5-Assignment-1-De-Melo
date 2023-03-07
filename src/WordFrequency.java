@@ -8,11 +8,22 @@ public class WordFrequency implements Comparable<WordFrequency>{
         this.wordCount = wordCount;
     }
 
+    public String getWord()
+    {
+        return word;
+    }
+    
+    public Integer getWordCount()
+    {
+        return wordCount;
+    }
+
     @Override
     public String toString()
     {
         return "WordFrequency [Word = " + word + " Word frequency = " + wordCount + " ] ";
     }
+
     @Override
     public int compareTo(WordFrequency otherWordCount)
     {

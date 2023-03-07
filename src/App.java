@@ -6,12 +6,29 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException; 
 import java.util.HashMap;
+import java.util.Collection;
+import java.util.Collections; 
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
         ArrayList<String> words = readWords("C:/Users/16476/Desktop/Sc/Semester 4/Java/Lab 5 Assignment 1 De Melo/res/words.txt"); // STEP 4
         HashMap<String, Integer> wordCounter = buildHashMap(words); //Step 5
         createHTMLFile(wordCounter);//Step 6 Html
+
+        HashMap<String, Integer> wordFrequencies = buildHashMap(words);
+
+        ArrayList<WordFrequency> wordFrequencyList = new ArrayList<>();
+
+        for (String word : wordFrequencies.keySet()) {
+            int frequency = wordFrequencies.get(word);
+            WordFrequency wordFrequency = new WordFrequency(word, frequency);
+            wordFrequencyList.add(wordFrequency);
+        }
+
+        Collections.sort(wordFrequencyList);
+        for (WordFrequency wordFrequency : wordFrequencyList) {
+            System.out.println(wordFrequency.getWord() + " : " + wordFrequency.getWordCount());
+        }
     }
 
     //Step 4 Read input file
@@ -106,11 +123,14 @@ public class App {
             e.printStackTrace();
         }
 // to see it in console.
+    /* 
         for (String keyWord: wordCounter.keySet())
         {
             System.out.println(keyWord + ". " + wordCounter.get(keyWord));
         }
+        */
     }
+
 }
 
 
