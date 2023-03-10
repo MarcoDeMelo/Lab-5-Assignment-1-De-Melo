@@ -13,25 +13,27 @@ public class App {
         ArrayList<String> words = readWords("C:/Users/16476/Desktop/Sc/Semester 4/Java/Lab 5 Assignment 1 De Melo/res/words.txt"); // STEP 4
         
         //Step 14
-        ArrayList<String> word2 = readWords2("C:/Users/16476/Desktop/Sc/Semester 4/Java/Lab 5 Assignment 1 De Melo/res/paragraph.txt");
+        ArrayList<String> word2 = readWords("C:/Users/16476/Desktop/Sc/Semester 4/Java/Lab 5 Assignment 1 De Melo/res/paragraph.txt");
         
         HashMap<String, Integer> wordCounter = buildHashMap(words); //Step 5
 
         HashMap<String, Integer> wordCounter2 = buildHashMap(word2);
+
 
         createHTMLFile(wordCounter);//Step 6 Html
 
         
         createHTMLFile2(wordCounter);
 
-
+/*createHTMLFile and createHTMLFile2 are both used by the WordFrequency class */
         createHTMLFile3(wordCounter2);
 
         createHTMLFile4(wordCounter2);
-       
+       /*createHTMLFile3 and createHTMLFile4 are both used by the ParagraphFrequency class */
     }
 
     //Step 4 Read input file
+    /*This functions goes inside the file and calculates how many words are repeated and stores their values */
     private static ArrayList<String> readWords(String fileName)
     {
         File file = new File(fileName);
@@ -71,46 +73,9 @@ public class App {
         return wordList;
     }
 
-    //Step 14 private static ArrayList<String> readWords(String fileName)
-    private static ArrayList<String> readWords2(String fileName2)
-    {
-        File file = new File(fileName2);
-        ArrayList<String> wordList = new ArrayList<>();
-        
-        try {
-            FileReader reader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(reader);
-
-            String line = bufferedReader.readLine();
-            while(line != null)
-            {
-                String[] words = line.split("[ .,]+");
-                for(String word: words)
-                {
-                    if(word.trim().length() > 0)
-                    {
-                        wordList.add(word.toLowerCase());
-                    }
-
-
-                }
-                line = bufferedReader.readLine();
-            }
-            bufferedReader.close();
-            
-
-        } catch (FileNotFoundException e) {
-
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        return wordList;
-    }
+    
 //Step 5: Counting words Occurences 
+/*This fuction is used to build the HashMap so that we can store and access all the data */
     private static HashMap<String, Integer> buildHashMap(ArrayList<String> words)
     {
       HashMap<String, Integer> wordCounter = new HashMap<>();
@@ -130,7 +95,7 @@ public class App {
     }
 
     
-    //Step 6: Create output
+    //Step 6: Create output that displays the word count for each word in the file.
     private static void createHTMLFile(HashMap<String, Integer> wordCounter)
     {
         File file = new File("C:/Users/16476/Desktop/Sc/Semester 4/Java/Lab 5 Assignment 1 De Melo/res/words.html");
@@ -164,7 +129,8 @@ public class App {
             e.printStackTrace();
         }
     }
-    //Step 10 createHTML is used to get the hasmap into a arraylist so that we can collection.sort it for ascending order.
+    //Step 10 createHTML is used to get the hasmap into a arraylist so that we can collection.sort it for ascending order. 
+    // Same Goal as createHTML1 but with ascending order
         private static void createHTMLFile2(HashMap<String, Integer> wordCounter)
         {
 
@@ -211,7 +177,7 @@ public class App {
     }
 }
     
-//Step 16
+//Step 16 Same thing as createHTMLFile 
 private static void createHTMLFile3(HashMap<String, Integer> wordCounter2)
         {
             File file = new File("C:/Users/16476/Desktop/Sc/Semester 4/Java/Lab 5 Assignment 1 De Melo/res/paragraph.html");
@@ -245,7 +211,7 @@ private static void createHTMLFile3(HashMap<String, Integer> wordCounter2)
                 e.printStackTrace();
             }
 }
-
+//Same thing as createHTMLFile2
 private static void createHTMLFile4(HashMap<String, Integer> paragraphFrequencie)
         {
 
@@ -288,13 +254,7 @@ private static void createHTMLFile4(HashMap<String, Integer> paragraphFrequencie
         e.printStackTrace();
     }
 }
-// to see it in console.
-    /* 
-        for (String keyWord: wordCounter.keySet())
-        {
-            System.out.println(keyWord + ". " + wordCounter.get(keyWord));
-        }
-        */
+
     }
 
 
